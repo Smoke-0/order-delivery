@@ -1,4 +1,4 @@
-package com.corona.orderdelivery.courier.exceptions;
+package com.corona.orderdelivery.courier.domain.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,8 +1,6 @@
 package com.corona.orderdelivery.delivery;
 
-import com.corona.orderdelivery.courier.Courier;
 import com.corona.orderdelivery.delivery.exceptions.DeliveryNotFoundException;
-import com.corona.orderdelivery.delivery.exceptions.RouteNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

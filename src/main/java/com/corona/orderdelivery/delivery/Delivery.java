@@ -1,6 +1,6 @@
 package com.corona.orderdelivery.delivery;
 
-import com.corona.orderdelivery.courier.Courier;
+import com.corona.orderdelivery.courier.domain.Courier;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
