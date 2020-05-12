@@ -42,14 +42,14 @@ public class CourierService {
                 .collect(Collectors.toList());
     }
 
-    public CourierIdDto assignCourierToDelivery(Delivery delivery){
+    public CourierIdDto assignCourierToDelivery(String deliveryId){
 
-        RouteDto route = courierDeliveryClient.getDeliveryRoute(delivery.getId().toString());
+        RouteDto route = courierDeliveryClient.getDeliveryRoute(deliveryId);
 
         Courier leastBusyCourier = getLeastBusyCourier();
         if(checkDeliveryFeasibility(leastBusyCourier, route.getLength())) {
             courierDeliveryService.createCourierDelivery(new CourierDelivery().builder()
-                .id(delivery.getId())
+                .id(deliveryId)
                 .routeLength(route.getLength())
                 .courier(leastBusyCourier)
                 .build());
