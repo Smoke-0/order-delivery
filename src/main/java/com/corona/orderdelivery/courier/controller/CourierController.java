@@ -20,6 +20,7 @@ public class CourierController {
     CourierController(CourierService courierService) {
         this.courierService = courierService;
     }
+
     @GetMapping("/couriers")
     ResponseEntity<List<CourierDto>> getAllCouriers(){
         return ResponseEntity.ok(courierService.getAllCouriers());
@@ -35,8 +36,8 @@ public class CourierController {
         return new ResponseEntity<>(courierService.createNewCourier(courier), HttpStatus.CREATED);
     }
 
-    @PostMapping("/couriers/assignDelivery")
-    ResponseEntity<CourierIdDto> assignCourierToDelivery(@RequestBody Delivery delivery){
-        return ResponseEntity.ok(courierService.assignCourierToDelivery(delivery));
+    @PostMapping("/couriers/assignDelivery/{deliveryID}")
+    ResponseEntity<CourierIdDto> assignCourierToDelivery(@PathVariable("deliveryID") String deliveryID){
+        return ResponseEntity.ok(courierService.assignCourierToDelivery(deliveryID));
     }
 }
