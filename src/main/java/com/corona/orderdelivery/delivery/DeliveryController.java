@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/corona")
 public class DeliveryController {
@@ -23,6 +25,12 @@ public class DeliveryController {
     ResponseEntity<Route> getDeliveryRoute(@PathVariable Integer deliveryId) throws DeliveryNotFoundException {
             Route route = deliveryService.getDeliveryRoute(deliveryId);
             return ResponseEntity.ok(route);
+    }
+
+    @GetMapping("/deliveries/{deliveryId}")
+    ResponseEntity<Delivery> getDelivery(@PathVariable Integer deliveryId){
+        Optional<Delivery> delivery = deliveryService.getDelivery(deliveryId);
+        return delivery.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping("/deliveries")
