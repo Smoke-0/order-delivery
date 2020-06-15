@@ -30,13 +30,10 @@ class DeliveryService {
         else throw new DeliveryNotFoundException();
     }
 
-    Optional<Delivery> getDelivery(Integer deliveryId){
+    Delivery getDelivery(Integer deliveryId){
         logger.info("Delivery Id: " +  deliveryId);
         Optional<Delivery> delivery = deliveryRepository.findById(deliveryId);
         logger.info(String.valueOf(delivery));
-        if(delivery!=null) {
-            return delivery;
-        }
-        else throw new DeliveryNotFoundException();
+        return delivery.orElseThrow(DeliveryNotFoundException::new);
     }
 }

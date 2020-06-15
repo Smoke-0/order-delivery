@@ -29,8 +29,8 @@ public class DeliveryController {
 
     @GetMapping("/deliveries/{deliveryId}")
     ResponseEntity<Delivery> getDelivery(@PathVariable Integer deliveryId){
-        Optional<Delivery> delivery = deliveryService.getDelivery(deliveryId);
-        return delivery.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        Delivery delivery = deliveryService.getDelivery(deliveryId);
+        return ResponseEntity.ok(delivery);
     }
 
     @PostMapping("/deliveries")
