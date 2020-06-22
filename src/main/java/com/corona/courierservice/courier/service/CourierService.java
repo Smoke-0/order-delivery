@@ -10,6 +10,7 @@ import com.corona.courierservice.courier.dto.RouteDto;
 import com.corona.courierservice.courier.mappers.CourierMapper;
 import com.corona.courierservice.courier.repository.CourierRepository;
 import com.corona.courierservice.delivery.exceptions.NoCouriersFoundException;
+import com.corona.courierservice.deliverySvc.client.DeliveryClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ public class CourierService {
     private final CourierRepository courierRepository;
     private final CourierDeliveryClient courierDeliveryClient;
     private final CourierDeliveryService courierDeliveryService;
+    private DeliveryClient deliveryClient;
 
     public CourierService(CourierRepository courierRepository,
                           CourierDeliveryClient courierDeliveryClient,
@@ -44,6 +46,8 @@ public class CourierService {
     public CourierIdDto assignCourierToDelivery(Integer deliveryId){
 
         RouteDto route = courierDeliveryClient.getDeliveryRoute(deliveryId);
+
+        deliveryClient.getDeliveryById(deliveryId);
 
         Courier leastBusyCourier = getLeastBusyCourier();
         if(checkDeliveryFeasibility(leastBusyCourier, route.getLength())) {
